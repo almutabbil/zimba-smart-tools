@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZimbaBox — Free AI-Powered Tools</title>
+  <meta name="description" content="ZimbaBox: a growing library of free AI-powered mini tools for developers, marketers, and creators." />
+  <style>
+    :root{
+      --bg:#0b0f17; --bg2:#0e1420; --grad1:#0b0f17; --grad2:#0f243b; --grad3:#0b0f17;
+      --card:#111827; --card2:#0f172a; --muted:#9aa4b2; --text:#e6edf3;
+      --accent:#00e0a4; --accent-2:#7dd3fc; --ring: rgba(0,224,164,.35);
+      --border:#1f2937; --shadow: 0 10px 30px rgba(0,0,0,.45); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;
+      color:var(--text);
+      background:
+        radial-gradient(1000px 600px at 10% -10%, #142036 0%, transparent 55%),
+        radial-gradient(800px 500px at 90% -10%, #0b3a3a 0%, transparent 60%),
+        linear-gradient(180deg, var(--grad1), var(--grad2) 55%, var(--grad3));
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1200px; margin:0 auto; padding:28px 18px 80px}
+    header{display:flex; align-items:center; gap:16px; flex-wrap:wrap; justify-content:space-between; margin-bottom:14px;}
+    .brand{display:flex; align-items:center; gap:14px; padding:8px 0;}
+    .logo{width:38px; height:38px; border-radius:10px; background: conic-gradient(from 120deg, #00e0a4, #7dd3fc, #00e0a4); box-shadow:0 0 0 3px rgba(0,224,164,.15), inset 0 0 30px rgba(255,255,255,.08); display:grid; place-items:center; font-weight:800; color:#001614;}
+    .title h1{margin:0; font-size:22px; letter-spacing:.3px}
+    .title small{color:var(--muted)}
+    .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    .ctrl{display:flex; align-items:center; gap:8px; background: linear-gradient(180deg, #0e1626, #0c1220); border:1px solid var(--border); border-radius:12px; padding:10px 12px; color:var(--text); box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);}
+    .ctrl input, .ctrl select{background:transparent; border:0; outline:0; color:var(--text); min-width:0; font-size:14px;}
+    .ctrl input::placeholder{color:#6b7280}
+    .toggle{cursor:pointer; user-select:none; background: linear-gradient(180deg, #0d1423, #0a1020); border:1px solid var(--border); padding:10px 12px; border-radius:12px;}
+    .toggle strong{color:var(--accent)}
+    .stat{color:var(--muted); font-size:14px}
+    .toolbar{display:flex; justify-content:space-between; align-items:center; margin:14px 0 18px}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:16px;}
+    @media (max-width:1200px){ .grid{grid-template-columns: repeat(9, 1fr);} }
+    @media (max-width:900px){ .grid{grid-template-columns: repeat(6, 1fr);} }
+    @media (max-width:640px){ .grid{grid-template-columns: repeat(1, 1fr);} }
+    .card{grid-column: span 4; background: linear-gradient(180deg, var(--card), var(--card2)); border:1px solid var(--border); border-radius: var(--radius); padding:16px; box-shadow: var(--shadow); display:flex; flex-direction:column; gap:14px; transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;}
+    .card:hover{ transform: translateY(-3px); border-color:#263244; box-shadow:0 14px 30px rgba(3, 10, 24, .55)}
+    .card-head{display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .icon{width:42px; height:42px; border-radius:12px; display:grid; place-items:center; font-size:20px; background:linear-gradient(180deg, #0f2b2b, #0a1a1a); border:1px solid #1e2a2a; color:#a0fff0; box-shadow: inset 0 0 22px rgba(0,224,164,.08);}
+    .name{font-weight:700; letter-spacing:.2px}
+    .badge{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #214337; background:#0b2a24; color:#86f3d3;}
+    .desc{color:#c6d1dc; line-height:1.45}
+    .meta{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{font-size:12px; padding:4px 8px; border-radius:999px; border:1px solid #273042; color:#98a6b8; background:#0d1522}
+    .actions{display:flex; gap:8px; margin-top:auto}
+    .btn{flex:1; text-align:center; padding:10px 12px; border-radius:12px; border:1px solid #233042; background: #0d1728; color:#e7f6ff; font-weight:600; transition: background .15s ease, border-color .15s ease, transform .08s ease;}
+    .btn:hover{ background:#0f2137; border-color:#2d415c }
+    .btn.primary{ background: linear-gradient(180deg, #052d25, #05231e); border-color:#0f3f33; color:#c7fff1; box-shadow: 0 0 0 3px rgba(0,224,164,.35)}
+    .btn.primary:hover{ background: linear-gradient(180deg, #06372c, #072a23) }
+    .empty{ text-align:center; color:#9bb5d3; padding:40px; border:1px dashed #203046; border-radius:18px; background:#0b1220a6 }
+    footer{margin-top:28px; color:#9bb5d3; font-size:14px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap}
+    .kbd{border:1px solid #2a3b52; background:#0b1220; border-radius:8px; padding:2px 6px; font-size:12px}
+    .ad-rail{margin:20px 0; border:1px dashed #2a4266; border-radius:14px; padding:16px; background:#0c1729; display:flex; gap:10px; align-items:center; justify-content:center; color:#8fb3d9}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">Z</div>
+        <div class="title">
+          <h1>ZimbaBox <small>— Free AI-Powered Tools</small></h1>
+          <div class="stat" id="countStat">0 tools available</div>
+        </div>
+      </div>
+      <div class="controls">
+        <label class="ctrl" title="Search tools"><span>🔎</span><input id="search" placeholder="Search tools…" /></label>
+        <label class="ctrl" title="Filter by category"><span>🗂️</span><select id="category"><option value="all">All categories</option></select></label>
+        <label class="ctrl" title="Sort tools"><span>↕️</span><select id="sort"><option value="name">Sort by name</option><option value="new">Newest first</option><option value="popular">Most popular</option></select></label>
+        <button class="toggle" id="modeToggle" title="Toggle compact mode"><span>View: <strong id="viewLabel">Comfortable</strong></span></button>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="stat">Tip: press <span class="kbd">/</span> to focus search. Click a card to open.</div>
+      <div class="stat" id="activeFilters"></div>
+    </div>
+
+    <div class="ad-rail">970×90 (Homepage banner) — Replace with AdSense / direct-sold ad</div>
+
+    <div id="grid" class="grid" role="list"></div>
+    <div id="empty" class="empty" style="display:none">No tools match your filters. Try fewer filters.</div>
+
+    <footer>
+      <div>© 2025 ZimbaBox. All rights reserved.</div>
+      <div>Want your tool listed? <a href="mailto:sales@zimbabox.com">Contact us</a>.</div>
+    </footer>
+  </div>
+
+  <script>
+    const tools = [
+      {id:"ai-inference-cost", name:"AI Inference Cost Estimator", desc:"Token math, cache rates, and latency trade-offs. Pick the right model for your budget.", category:"Developers", tags:["ai","costs","latency"], url:"tools/ai-inference-cost.html", icon:"🤖", popular:88, isNew:false},
+      {id:"bulk-email-checker", name:"Bulk Email Checker", desc:"Validate emails for syntax and heuristics (client-side). Paste CSV or list.", category:"Marketing", tags:["email","validation","csv"], url:"tools/bulk-email-checker.html", icon:"📧", popular:84, isNew:false},
+      {id:"content-roi", name:"Content ROI Timer", desc:"Will your next video/blog pay off? Breakeven views, RPM/sponsor mix, and payback time.", category:"Creators", tags:["youtube","blogging","roi"], url:"tools/content-roi.html", icon:"🎬", popular:77, isNew:false},
+      {id:"free-shipping-profit", name:"Free-Shipping Profit Checker", desc:"See if ‘free shipping’ nukes your margin. Breakeven threshold & monthly delta.", category:"E-commerce", tags:["margin","shipping","aov"], url:"tools/free-shipping-profit.html", icon:"📦", popular:72, isNew:false},
+      {id:"gym-cost-pr", name:"Gym Cost per PR", desc:"Turn membership, time and PRs into cost/PR. Laugh. Then optimize.", category:"Health & Fitness", tags:["fitness","progress","metrics"], url:"tools/gym-cost-pr.html", icon:"🏋️", popular:63, isNew:true},
+      {id:"edd-estimator", name:"KYC/EDD Effort Estimator", desc:"Estimate hours & cost by risk factors. Presets for Crypto, NGO, SME.", category:"Compliance", tags:["aml","kyc","risk"], url:"tools/edd-estimator.html", icon:"🛡️", popular:95, isNew:false},
+      {id:"meeting-cost", name:"Meeting Cost Calculator", desc:"Real-time meeting burn rate: total cost, per minute, per second—plus a friendly scream over $500.", category:"Productivity", tags:["business","estimator","calculator"], url:"tools/meeting-cost.html", icon:"💸", popular:92, isNew:false},
+      {id:"pomodoro-payback", name:"Pomodoro Payback", desc:"Does your focus method actually increase net output? Find your break-even timer.", category:"Productivity", tags:["focus","habits","time"], url:"tools/pomodoro-payback.html", icon:"🍅", popular:58, isNew:true},
+      {id:"rent-vs-airbnb", name:"Rent vs Airbnb Weekend", desc:"Compare monthly net from weekend Airbnb vs. long-term rent. Breakeven and payback included.", category:"Real Estate", tags:["hosting","airbnb","yield"], url:"tools/rent-vs-airbnb.html", icon:"🏠", popular:81, isNew:false},
+      {id:"time-waster-tax", name:"Time-Waster Tax", desc:"Estimate the daily/weekly cost of interruptions and context switching for your team.", category:"Productivity", tags:["work","focus","team"], url:"tools/time-waster-tax.html", icon:"⏱️", popular:74, isNew:true},
+      {id:"layover-value", name:"Travel Layover Value", desc:"Is that ‘cheaper’ flight with a long layover actually more expensive? Find out, brutally.", category:"Travel", tags:["flights","budget","roi"], url:"tools/travel-layover-value.html", icon:"✈️", popular:68, isNew:true},
+      {id:"sub-graveyard", name:"Subscription Graveyard", desc:"Calculate annual waste on unused subscriptions and print a cancellation plan.", category:"Finance", tags:["subscriptions","savings","budget"], url:"tools/subscription-graveyard.html", icon:"🪦", popular:89, isNew:false}
+    ];
+    const categories = ["All","Developers","Marketing","Creators","E-commerce","Compliance","Finance","Travel","Real Estate","Health & Fitness","Productivity"];
+    let state = { q:"", category:"all", sort:"name", compact: JSON.parse(localStorage.getItem("zb_compact") || "false") };
+    const grid = document.getElementById("grid");
+    const empty = document.getElementById("empty");
+    const search = document.getElementById("search");
+    const categorySel = document.getElementById("category");
+    const sortSel = document.getElementById("sort");
+    const modeToggle = document.getElementById("modeToggle");
+    const viewLabel = document.getElementById("viewLabel");
+    const countStat = document.getElementById("countStat");
+    const activeFilters = document.getElementById("activeFilters");
+
+    categories.forEach(c=>{ const opt=document.createElement('option'); opt.value=c.toLowerCase()==='all'?'all':c; opt.textContent=c; categorySel.appendChild(opt); });
+
+    function applyFilters(list){
+      const q = state.q.trim().toLowerCase();
+      return list.filter(t=>{
+        const matchesQ = !q || (t.name.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q) || t.tags.join(' ').toLowerCase().includes(q));
+        const matchesCat = state.category==='all' || t.category.toLowerCase()===state.category.toLowerCase();
+        return matchesQ && matchesCat;
+      });
+    }
+    function sorter(a,b){
+      if(state.sort==='name') return a.name.localeCompare(b.name);
+      if(state.sort==='new') return (b.isNew?1:0)-(a.isNew?1:0) || b.popular-a.popular;
+      if(state.sort==='popular') return b.popular-a.popular || a.name.localeCompare(b.name);
+      return 0;
+    }
+    function render(){
+      const filtered = applyFilters(tools).sort(sorter);
+      grid.innerHTML='';
+      filtered.forEach(t=>{
+        const card=document.createElement('article');
+        card.className='card';
+        card.setAttribute('role','listitem');
+        card.innerHTML = `
+          <div class="card-head">
+            <div style="display:flex; gap:12px; align-items:center">
+              <div class="icon" aria-hidden="true">${t.icon}</div>
+              <div>
+                <div class="name">${t.name}</div>
+                <div class="stat" style="font-size:12px">${t.category}</div>
+              </div>
+            </div>
+            ${t.isNew?'<span class="badge">NEW</span>':''}
+          </div>
+          <div class="desc">${t.desc}</div>
+          <div class="meta">${t.tags.map(x=>`<span class="chip">${x}</span>`).join('')}</div>
+          <div class="actions">
+            <a class="btn primary" href="${t.url}" aria-label="Open ${t.name}">Open</a>
+            <button class="btn" data-copy="${location.origin+location.pathname}#${t.id}" aria-label="Copy link to ${t.name}">Copy link</button>
+          </div>`;
+        if(state.compact){ card.style.padding='14px'; card.querySelector('.desc').style.display='none'; }
+        card.addEventListener('click', e=>{ if(e.target.closest('.btn')) return; location.href=t.url; });
+        card.querySelectorAll('button[data-copy]').forEach(btn=>{
+          btn.addEventListener('click', e=>{ e.stopPropagation(); const link=btn.getAttribute('data-copy'); navigator.clipboard.writeText(link).then(()=>{ btn.textContent='Copied!'; setTimeout(()=>btn.textContent='Copy link', 900); }); });
+        });
+        grid.appendChild(card);
+      });
+      const total = tools.length; const shown = filtered.length;
+      countStat.textContent = `${shown} tool${shown!==1?'s':''} available · ${total} total`;
+      empty.style.display = shown ? 'none':'block';
+      activeFilters.textContent = `${state.category!=='all'?'Filter: '+state.category+' · ':''}${state.q? 'Query: "'+state.q+'"' : ''}`;
+      viewLabel.textContent = state.compact ? 'Compact':'Comfortable';
+    }
+    search.addEventListener('input', ()=>{ state.q=search.value; render(); });
+    categorySel.addEventListener('change', ()=>{ state.category=categorySel.value; render(); });
+    sortSel.addEventListener('change', ()=>{ state.sort=sortSel.value; render(); });
+    modeToggle.addEventListener('click', ()=>{ state.compact=!state.compact; localStorage.setItem('zb_compact', JSON.stringify(state.compact)); render(); });
+    window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==search){ e.preventDefault(); search.focus(); } });
+    render();
+  </script>
+</body>
+</html>

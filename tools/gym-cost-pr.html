@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gym Cost per PR — ZimbaBox</title>
+<meta name="description" content="Turn membership + time into cost per PR.">
+<style>
+:root{
+  --bg:#0b0f17; --bg2:#0e1420; --card:#0f172a; --card2:#0b1220;
+  --text:#e6edf3; --muted:#97a8bf; --accent:#00e0a4; --accent2:#7dd3fc;
+  --border:#21314a; --danger:#ff5a76; --ok:#22c55e; --warning:#fbbf24;
+  --radius:18px;
+}
+*{box-sizing:border-box} html,body{height:100%} body{
+  margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto;
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 10% -10%, #142036 0%, transparent 55%),
+    radial-gradient(800px 500px at 90% -10%, #0b3a3a 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg), var(--bg2) 55%, #0b0f17);
+}
+.wrap{max-width:1100px; margin:0 auto; padding:26px 16px 80px}
+a{color:inherit; text-decoration:none}
+.header{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.brand{display:flex; gap:12px; align-items:center}
+.logo{width:36px; height:36px; border-radius:10px; background:conic-gradient(from 120deg,#00e0a4,#7dd3fc,#00e0a4); color:#001614; display:grid; place-items:center; font-weight:800}
+h1{margin:0; font-size:22px}
+.subtitle{color:#bcd0e9; font-size:14px}
+.card{background:linear-gradient(180deg,var(--card),var(--card2)); border:1px solid var(--border); border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.main{padding:18px}
+.controls{display:grid; gap:12px; grid-template-columns: repeat(12,1fr)}
+.controls .field{grid-column: span 6; display:flex; flex-direction:column; gap:6px}
+.controls label{font-size:13px; color:#bcd0e9}
+input[type=number], select{background:#0c1424; border:1px solid #1e2c44; color:var(--text); padding:12px 10px; border-radius:12px; outline:none}
+input::placeholder{color:#6b7280}
+textarea{outline:none; border-radius:12px}
+.result{margin-top:16px; padding:16px; border-radius:14px; border:1px solid #23364f; background:#0c1627}
+.result h2{margin:0 0 8px 0; font-size:18px}
+.row{display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #1a2a42}
+.row:last-child{border-bottom:0}
+.big{font-size:28px; font-weight:800}
+.warn{border:1px solid #3a1e2a; background:#241019; color:#ffc2cd; border-radius:12px; padding:12px; margin-top:12px}
+.ok{border:1px solid #1e3a2a; background:#0f2419; color:#b0ffd4; border-radius:12px; padding:12px; margin-top:12px}
+.footer{margin-top:22px; display:flex; justify-content:space-between; color:#9bb5d3; font-size:13px; flex-wrap:wrap; gap:10px}
+.btn{display:inline-block; background:#0d2137; border:1px solid #2d415c; color:#e7f6ff; padding:10px 14px; border-radius:12px; font-weight:600}
+.btn.primary{background: linear-gradient(180deg, #052d25, #05231e); border-color:#0f3f33; color:#c7fff1}
+.tooltip{font-size:12px; color:#9bb5d3}
+
+/* Ad placeholders */
+.ad-banner {min-height:90px; border:1px dashed #28405f; border-radius:14px; display:grid; place-items:center; color:#8fb3d9; background:#0c1729; margin:8px 0;}
+.ad-rect {min-height:250px; border:1px dashed #28405f; border-radius:14px; display:grid; place-items:center; color:#8fb3d9; background:#0c1729; margin:8px 0;}
+.ad-note {font-size:12px; color:#9bb5d3; margin-top:6px;}
+@media (min-width:920px){
+  .layout {display:grid; grid-template-columns: minmax(0,1fr) 320px; gap:18px;}
+  .sticky {position:sticky; top:18px;}
+}
+
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">
+      <div class="logo">Z</div>
+      <div>
+        <h1>Gym Cost per PR</h1>
+        <div class="subtitle">Turn membership + time into cost per PR.</div>
+      </div>
+    </div>
+    <div><a class="btn" href="../index.html">← Back to ZimbaBox</a></div>
+  </div>
+
+  <div class="layout">
+    <main class="card main">
+      <!-- Google AdSense Placeholder (replace with your code)
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-XXXXXXXXXXXX"
+     data-ad-slot="YYYYYYYYYY"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+-->
+
+      <div class="ad-banner">728×90 Ad Banner (replace with AdSense)</div>
+
+      <section style='margin-top:12px'><div class='controls'>
+<div class='field'><label>Membership €/month</label><input id='mfee' type='number' value='35'></div>
+<div class='field'><label>Visits / month</label><input id='vis' type='number' value='12'></div>
+<div class='field'><label>Minutes per Visit</label><input id='mins' type='number' value='75'></div>
+<div class='field'><label>PRs / month</label><input id='prs' type='number' value='2'></div>
+<div class='field'><label>Supplements €/month</label><input id='supp' type='number' value='20'></div>
+</div><div class='result'><h2>Costs</h2>
+<div class='row'><div>Total Monthly Cost</div><div id='total'>€0.00</div></div>
+<div class='row'><div>€ per PR</div><div class='big' id='perpr'>€0.00</div></div>
+<div class='row'><div>€ per Training Hour</div><div id='perh'>€0.00</div></div>
+<div id='ouch' class='warn' style='display:none'>Ouch: cost per PR is high. Increase PR density or adjust programming.</div></div></section>
+
+      <div class="footer">
+        <div>© 2025 ZimbaBox</div>
+        <div class="tooltip">All calculations are client-side. No data leaves your browser.</div>
+      </div>
+    </main>
+
+    <aside class="card main sticky">
+      <h3 style="margin-top:0">Sponsor this tool</h3>
+      <p class="subtitle">Buy this ad spot and reach devs, marketers, and founders.</p>
+      <div class="ad-rect">300×600 Ad Spot</div>
+      <div class="ad-note">Replace with your AdSense or direct-sold creative.</div>
+      <hr style="border-color:#22334d; border-style:solid; border-width:1px; opacity:.5; margin:16px 0">
+      <h4 style="margin:8px 0">Share</h4>
+      <div style="display:flex; gap:8px; flex-wrap:wrap">
+        <button class="btn" id="copyLink">Copy link</button>
+        <a class="btn" id="printBtn" href="#">Print</a>
+      </div>
+    </aside>
+  </div>
+</div>
+<script>
+document.getElementById('copyLink').addEventListener('click', ()=>{navigator.clipboard.writeText(location.href).then(()=>{alert('Link copied');})});
+document.getElementById('printBtn').addEventListener('click', (e)=>{e.preventDefault(); window.print();});
+const $=id=>document.getElementById(id); function euro(n){return '€'+(n.toFixed(2));}
+function calc(){const mfee=+$('mfee').value||0, vis=+$('vis').value||0, mins=+$('mins').value||0, prs=+$('prs').value||0, supp=+$('supp').value||0;
+const total=mfee+supp, hours=vis*(mins/60), perpr= prs>0? total/prs : Infinity, perh= hours>0? total/hours: Infinity;
+$('total').textContent=euro(total); $('perpr').textContent=isFinite(perpr)? euro(perpr):'—'; $('perh').textContent=isFinite(perh)? euro(perh):'—'; $('ouch').style.display= perpr>100 && isFinite(perpr)? 'block':'none';}
+['mfee','vis','mins','prs','supp'].forEach(id=>$(id).addEventListener('input',calc)); calc();
+</script>
+</body>
+</html>
