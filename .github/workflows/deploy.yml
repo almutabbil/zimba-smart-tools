@@ -1,0 +1,26 @@
+name: Deploy zimba-smart-tools
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "index.html"
+      - "tools/**"
+
+jobs:
+  sftp-deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-zimba-smart-tools
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: SFTP deploy to cPanel
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}      # e.g. sftp.zimbabox.com
+          port: ${{ secrets.SFTP_PORT }}          # usually 22
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASS }}
+          local_path: "./"
+          remote_path: "/public_html/zimba-smart-tools"
+          exclude: ".git*,.github/**"
