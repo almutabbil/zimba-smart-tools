@@ -1,1 +1,6 @@
 
+# Disable parent WordPress rewrites inside this folder
+RewriteEngine Off
+
+# Make sure Apache serves index.html by default
+DirectoryIndex index.html
